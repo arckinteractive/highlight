@@ -17,7 +17,7 @@ This plugin highlights matching words on any page based on the 'highlight' query
 
 eg.
 
-```http://example.com?highlight=test```
+    http://example.com?highlight=test
 
 would highlight the word 'test' everywhere it occurs on the page.
 
@@ -25,7 +25,7 @@ The color of the highlight can be overridden in the query parameter also
 
 eg.
 
-```http://example.com?highlight=test&highlight-color=%23000000```
+    http://example.com?highlight=test&highlight-color=%23000000
 
 would highlight the word 'test' with black instead (note the %23 is the urlencoded #)
 
