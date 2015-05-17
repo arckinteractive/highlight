@@ -11,11 +11,13 @@
 			vars[hash[0]] = hash[1];
 
 			if (hash[0] == 'highlight') {
-				highlight = hash[1];
+				// set highlights as an array split by spaces
+				highlight = decodeURIComponent((hash[1]+'').replace(/\+/g, '%20'));
+				highlight = highlight.split(" ");
 			}
 
 			if (hash[0] == 'highlight-color') {
-				color = hash[1];
+				color = decodeURIComponent((hash[1]+'').replace(/\+/g, '%20'));
 			}
 
 			if (hash[0] == 'q' || hash[0] == 'term' || hash[0] == 'query' || hash[0] == 'keyword') {
@@ -26,24 +28,23 @@
 
 		if (highlight) {
 			// clean up highlight if the query had operators such as *
-			var operators = ['%2A'];
+			var operators = ['*'];
 			for (var i = 0; i < operators.length; i++) {
 				// does this end with an operator?
-				if (highlight.indexOf(operators[i], highlight.length - operators[i].length) === highlight.length - operators[i].length) {
-					// strip it out
-					highlight = highlight.slice(0, -operators[i].length);
+				for (var j=0; j < highlight.length; j++) {
+					if (highlight[j].indexOf(operators[i], highlight[j].length - operators[i].length) === highlight[j].length - operators[i].length) {
+						// strip it out
+						highlight[j] = highlight[j].slice(0, -operators[i].length);
+					}	
 				}
 			}
 
 			// highlight matching strings
-			$('body').highlight(highlight, true);
+			for (var k=0; k < highlight.length; k++) {
+				$('body').highlight(highlight[k], true);
+			}
 
 			if (color) {
-				// convert url encoded hash
-				if (color.lastIndexOf('%23', 0) === 0) {
-					color = color.replace('%23', '#');
-				}
-
 				// default color was overridden by query param
 				$('.highlight').css('backgroundColor', color);
 			}
