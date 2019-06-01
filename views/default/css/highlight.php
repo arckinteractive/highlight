@@ -1,12 +1,7 @@
 <?php
 
-namespace Highlight;
+$color = elgg_get_plugin_setting('highlight_color', 'highlight') ? elgg_get_plugin_setting('highlight_color', 'highlight') : 'yellow';
 
-$color = elgg_get_plugin_setting('highlight_color', PLUGIN_ID);
-
-if (!$color) {
-	$color = 'yellow';
-}
 ?>
 
 .highlight {
