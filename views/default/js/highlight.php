@@ -49,9 +49,9 @@
 				$('.highlight').css('backgroundColor', color);
 			}
 		}
-
-		if ($('ul.search-list').length && query) {
-			$('ul.search-list a').each(function(index, item) {
+		
+		if ($('ul.elgg-list-entity').length && query) {
+			$('ul.elgg-list-entity a').each(function(index, item) {
 				var href = $(item).attr('href');
 
 				//http://stackoverflow.com/questions/5999118/add-or-update-query-string-parameter
